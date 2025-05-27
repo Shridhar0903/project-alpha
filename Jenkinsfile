@@ -4,33 +4,28 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                 git branch: 'main', url: 'https://github.com/Shridhar0903/project-alpha'
+                git branch: 'main', url: 'https://github.com/Shridhar0903/project-alpha'
             }
         }
-        stage('Build ') {
+        stage('Build') {
             steps {
-                  bat 'javac simple.java'
+                bat 'javac simple.java'
             }
         }
-        stage('test') {
+        stage('Test') {
             steps {
-
                 bat 'java simple'
-           
             }
         }
         stage('Deploy') {
             steps {
-                scripts{
-                    echo " Java program run successfully"
+                script {
+                    echo "Java program ran successfully"
                 }
             }
         }
     }
-  triggers{
-     pollSCM('H/5 * * * *')
-  }
+    triggers {
+        pollSCM('H/5 * * * *')
+    }
 }
-
-
-  
