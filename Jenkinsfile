@@ -1,31 +1,22 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Shridhar0903/project-alpha'
+                checkout scm
             }
         }
         stage('Build') {
             steps {
-                bat 'javac simple.java'
+                echo 'Building the project...'
+                // Add build commands here, e.g., sh 'mvn clean install'
             }
         }
         stage('Test') {
             steps {
-                bat 'java simple'
+                echo 'Running tests...'
+                // Add test commands here, e.g., sh 'mvn test'
             }
         }
-        stage('Deploy') {
-            steps {
-                script {
-                    echo "Java program ran successfully"
-                }
-            }
-        }
-    }
-    triggers {
-        pollSCM('H/5 * * * *')
     }
 }
